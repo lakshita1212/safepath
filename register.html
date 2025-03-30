@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - SafeTrack</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="auth-card">
+      <div class="card-header">
+        <h2>Create an account</h2>
+        <p>Register as a caretaker to set up monitoring for your patient</p>
+      </div>
+      <div class="card-content">
+        <div class="tabs">
+          <div class="tab-header">
+            <button class="tab-button active" data-tab="email">Email</button>
+            <button class="tab-button" data-tab="phone">Phone</button>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane active" id="email">
+              <form id="register-form" class="form">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="button primary full-width">Continue to Setup</button>
+              </form>
+            </div>
+            <div class="tab-pane" id="phone">
+              <form id="register-phone-form" class="form">
+                <div class="form-group">
+                  <label for="name-phone">Full Name</label>
+                  <input type="text" id="name-phone" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                  <label for="password-phone">Password</label>
+                  <input type="password" id="password-phone" name="password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                  <label for="confirmPassword-phone">Confirm Password</label>
+                  <input type="password" id="confirmPassword-phone" name="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="button primary full-width">Continue to Setup</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <p class="text-center">
+          Already have an account? 
+          <a href="login.html" class="link">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
+

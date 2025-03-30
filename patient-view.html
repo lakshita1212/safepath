@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient View - SafeTrack</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="patient-view-card">
+    <div class="card-header text-center">
+      <h2>Patient View</h2>
+      <p>Simple interface for the patient to use</p>
+    </div>
+    <div class="card-content">
+<div id="main-view" class="patient-main-view">
+  <div class="patient-buttons">
+    <button class="button primary large" id="who-am-I-btn">
+      <i class="fas fa-user"></i>
+      Who am I?
+    </button>
+    
+    <button class="button secondary large">
+      <i class="fas fa-phone"></i>
+      Call My Caretaker
+    </button>
+    
+    <button class="button tertiary large">
+      <i class="fas fa-home"></i>
+      Directions Home
+    </button>
+  </div>
+  
+  <div class="map-container">
+    <div class="map-placeholder">
+      <i class="fas fa-map-marker-alt"></i>
+      <p>Your current location</p>
+      <p class="distance-info">You are 320 meters from home</p>
+    </div>
+  </div>
+</div>
+
+<div id="recognition-view" class="recognition-view hidden">
+  <h3>Who is this person?</h3>
+  <p class="step-description">Take a photo or upload an image of the person you want to identify</p>
+  
+  <div class="recognition-options">
+    <button class="button secondary" id="take-photo-btn">
+      <i class="fas fa-camera"></i>
+      Take Photo
+    </button>
+    <div class="upload-box">
+      <i class="fas fa-upload"></i>
+      <p>Upload Photo</p>
+      <input type="file" id="upload-photo" class="file-input" accept="image/*">
+    </div>
+  </div>
+  
+  <div id="camera-view" class="camera-container hidden">
+    <video id="camera-stream" autoplay playsinline></video>
+    <button class="button primary" id="capture-btn">
+      <i class="fas fa-camera"></i>
+      Capture
+    </button>
+    <button class="button secondary" id="cancel-camera-btn">Cancel</button>
+  </div>
+  
+  <div id="preview-container" class="preview-container hidden">
+    <img id="photo-preview" src="/placeholder.svg" alt="Preview">
+    <div class="button-group">
+      <button class="button primary" id="recognize-btn">Identify Person</button>
+      <button class="button secondary" id="retake-btn">Try Again</button>
+    </div>
+  </div>
+  
+  <div id="recognition-result" class="recognition-result hidden">
+    <div class="result-header">
+      <i class="fas fa-check-circle"></i>
+      <h3>Person Identified!</h3>
+    </div>
+    <div class="person-details">
+      <div class="avatar medium">
+        <img id="recognized-person-img" src="/placeholder.svg" alt="Person">
+      </div>
+      <div class="person-info">
+        <h4 id="recognized-name">Jane Smith</h4>
+        <p id="recognized-relationship">Your Daughter</p>
+        <p id="recognized-details">Lives nearby and visits on weekends</p>
+      </div>
+    </div>
+    <button class="button primary full-width" id="call-person-btn">
+      <i class="fas fa-phone"></i>
+      Call This Person
+    </button>
+  </div>
+  
+  <button class="button secondary full-width mt-4" id="back-to-main-from-recognition">
+    Back to Main View
+  </button>
+</div>
+
+<div id="identity-view" class="patient-identity-view hidden">
+  <div class="identity-content">
+    <div class="avatar large">
+      <img src="https://via.placeholder.com/150" alt="Patient">
+    </div>
+    <div class="identity-details">
+      <h3>John Doe</h3>
+      <p>Patient ID: #12345</p>
+    </div>
+    <div class="identity-info">
+      <div class="detail-row">
+        <p class="detail-label">Caretaker:</p>
+        <p class="detail-value">Jane Smith</p>
+      </div>
+      <div class="detail-row">
+        <p class="detail-label">Relationship:</p>
+        <p class="detail-value">Family Member</p>
+      </div>
+      <div class="detail-row">
+        <p class="detail-label">Home Address:</p>
+        <p class="detail-value">123 Main St</p>
+      </div>
+    </div>
+    <button class="button primary full-width" id="back-to-main">
+      Back to Main View
+    </button>
+  </div>
+</div>
+</div>
+    <div class="card-footer text-center">
+      <p>If you need help, press the "Call My Caretaker" button</p>
+    </div>
+  </div>
+</div>
+
+<script src="js/patient-view.js"></script>
+</body>
+</html>
+

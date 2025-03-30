@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Setup - SafeTrack</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="setup-card">
+      <div class="card-header">
+        <h2>Patient Setup</h2>
+        <p>Complete the following steps to set up monitoring for your patient</p>
+        <div class="progress-container">
+          <div class="progress-bar" id="setup-progress"></div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="setup-steps">
+          <!-- Step 1: Upload Patient Photos -->
+          <div class="setup-step active" id="step-1">
+            <h3>Upload Patient Photos</h3>
+            <p class="step-description">Upload clear photos of the patient to help with identification</p>
+            
+            <div class="upload-container">
+              <div class="upload-box">
+                <i class="fas fa-upload"></i>
+                <p>Upload front-facing photo</p>
+                <input type="file" id="front-photo" class="file-input" accept="image/*">
+              </div>
+              <div class="upload-box">
+                <i class="fas fa-upload"></i>
+                <p>Upload side-profile photo</p>
+                <input type="file" id="side-photo" class="file-input" accept="image/*">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="patient-name">Patient Name</label>
+              <input type="text" id="patient-name" placeholder="Enter patient's full name">
+            </div>
+            
+            <div class="form-group">
+              <label for="relationship">Your Relationship to Patient</label>
+              <select id="relationship">
+                <option value="" disabled selected>Select relationship</option>
+                <option value="family">Family Member</option>
+                <option value="professional">Professional Caretaker</option>
+                <option value="friend">Friend</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Step 2: Set Location Parameters -->
+          <div class="setup-step" id="step-2">
+            <h3>Set Location Parameters</h3>
+            <p class="step-description">Define the base location and safe radius for the patient</p>
+            
+            <div class="map-container">
+              <div class="map-placeholder">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Map will be displayed here</p>
+                <button class="button secondary small" id="set-current-location">
+                  Set Current Location as Base
+                </button>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="slider-header">
+                <label for="radius">Safe Radius (meters)</label>
+                <span id="radius-value">500m</span>
+              </div>
+              <input type="range" id="radius" min="100" max="2000" step="100" value="500">
+            </div>
+            
+            <div class="form-group">
+              <label for="address">Base Location Address</label>
+              <input type="text" id="address" placeholder="Enter full address">
+            </div>
+          </div>
+          
+          <!-- Step 3: Add Known People -->
+          <div class="setup-step" id="step-3">
+            <h3>Add Known People</h3>
+            <p class="step-description">Add people the patient knows for the recognition feature</p>
+            
+            <div id="known-people-list" class="known-people-list">
+              <!-- Known people will be added here dynamically -->
+              <div class="empty-state">
+                <i class="fas fa-users"></i>
+                <p>No people added yet. Use the form below to add people the patient knows.</p>
+              </div>
+            </div>
+            
+            <div class="known-person-form">
+              <h4>Add Person</h4>
+              <div class="form-group">
+                <label for="person-name">Name</label>
+                <input type="text" id="person-name" placeholder="Enter person's name">
+              </div>
+              
+              <div class="form-group">
+                <label for="person-relationship">Relationship to Patient</label>
+                <input type="text" id="person-relationship" placeholder="E.g., Daughter, Doctor, Neighbor">
+              </div>
+              
+              <div class="form-group">
+                <label for="person-details">Additional Details</label>
+                <textarea id="person-details" placeholder="E.g., Visits on weekends, Lives nearby, etc."></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label>Photo</label>
+                <div class="upload-box small">
+                  <i class="fas fa-upload"></i>
+                  <p>Upload photo</p>
+                  <input type="file" id="person-photo" class="file-input" accept="image/*">
+                </div>
+                <div id="person-photo-preview" class="photo-preview-small hidden">
+                  <img src="/placeholder.svg" alt="Preview">
+                  <button class="remove-preview" id="remove-person-photo">×</button>
+                </div>
+              </div>
+              
+              <button class="button primary" id="add-person-btn">Add Person</button>
+            </div>
+          </div>
+          
+          <!-- Step 4: Emergency Contact Information -->
+          <div class="setup-step" id="step-4">
+            <h3>Emergency Contact Information</h3>
+            <p class="step-description">Provide emergency contact details for alerts</p>
+            
+            <div class="form-group">
+              <label for="emergency-name">Emergency Contact Name</label>
+              <input type="text" id="emergency-name" placeholder="Enter full name">
+            </div>
+            
+            <div class="form-group">
+              <label for="emergency-phone">Emergency Contact Phone</label>
+              <div class="input-with-icon">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="emergency-phone" placeholder="Enter phone number">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="emergency-relationship">Relationship to Patient</label>
+              <select id="emergency-relationship">
+                <option value="" disabled selected>Select relationship</option>
+                <option value="family">Family Member</option>
+                <option value="doctor">Doctor</option>
+                <option value="friend">Friend</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="secondary-phone">Secondary Contact Phone (Optional)</label>
+              <input type="tel" id="secondary-phone" placeholder="Enter secondary phone number">
+            </div>
+          </div>
+          
+          <!-- Step 5: Review and Confirm -->
+          <div class="setup-step" id="step-5">
+            <h3>Review and Confirm</h3>
+            <p class="step-description">Please review the information below before finalizing setup</p>
+            
+            <div class="review-container">
+              <div class="review-grid">
+                <div class="review-item">
+                  <p class="review-label">Patient Name:</p>
+                  <p class="review-value" id="review-patient-name">John Doe</p>
+                </div>
+                <div class="review-item">
+                  <p class="review-label">Relationship:</p>
+                  <p class="review-value" id="review-relationship">Family Member</p>
+                </div>
+                <div class="review-item">
+                  <p class="review-label">Base Location:</p>
+                  <p class="review-value" id="review-location">123 Main St, Anytown</p>
+                </div>
+                <div class="review-item">
+                  <p class="review-label">Safe Radius:</p>
+                  <p class="review-value" id="review-radius">500 meters</p>
+                </div>
+                <div class="review-item">
+                  <p class="review-label">Emergency Contact:</p>
+                  <p class="review-value" id="review-emergency-name">Jane Doe</p>
+                </div>
+                <div class="review-item">
+                  <p class="review-label">Emergency Phone:</p>
+                  <p class="review-value" id="review-emergency-phone">(555) 123-4567</p>
+                </div>
+              </div>
+              
+              <div class="photo-preview">
+                <div class="photo-thumbnail" id="preview-photo-1">
+                  <p>Photo 1</p>
+                </div>
+                <div class="photo-thumbnail" id="preview-photo-2">
+                  <p>Photo 2</p>
+                </div>
+              </div>
+              
+              <div class="known-people-summary">
+                <h4>Known People</h4>
+                <p id="known-people-count">0 people added</p>
+                <button class="button secondary small" id="view-known-people-btn">View List</button>
+              </div>
+            </div>
+            
+            <div class="form-group checkbox">
+              <input type="checkbox" id="confirm">
+              <label for="confirm">I confirm that all information provided is accurate</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="button-group">
+          <button class="button secondary" id="prev-step" disabled>Back</button>
+          <button class="button primary" id="next-step">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Known People Modal -->
+  <div class="modal" id="known-people-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Known People List</h2>
+        <button class="close-button" id="close-known-people-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-known-people-list" class="known-people-grid">
+          <!-- Known people will be displayed here -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="button secondary" id="close-modal-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/setup.js"></script>
+</body>
+</html>
+

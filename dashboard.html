@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - SafeTrack</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <div>
+        <h1>Patient Dashboard</h1>
+        <p>Monitor and manage your patient's location</p>
+      </div>
+      <div class="header-actions">
+        <button class="button secondary small" id="who-am-I-btn">
+          <i class="fas fa-user"></i>
+          Who am I? 
+        </button>
+        <button class="button secondary small">
+          <i class="fas fa-phone"></i>
+          Emergency Call
+        </button>
+      </div>
+    </header>
+
+    <div class="dashboard-grid">
+      <div class="card map-card">
+        <div class="card-header">
+          <div class="header-with-badge">
+            <h2>Location Tracking</h2>
+            <span class="badge" id="status-badge">Within Safe Zone</span>
+          </div>
+          <p>Current location and movement history</p>
+        </div>
+        <div class="card-content">
+          <div class="map-container">
+            <div class="map-placeholder">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>Map showing patient location will be displayed here</p>
+              <div class="map-actions">
+                <button class="button secondary small">
+                  <i class="fas fa-home"></i>
+                  Show Base Location
+                </button>
+                <button class="button secondary small">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Center on Patient
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="map-footer">
+            <div class="map-update">
+              <i class="fas fa-clock"></i>
+              <span>Last updated: 2 minutes ago</span>
+            </div>
+            <div class="map-distance">
+              <span>Distance from base: 320m</span>
+              <span class="badge outline">Safe radius: 500m</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card patient-card">
+        <div class="card-header">
+          <h2>Patient Information</h2>
+          <p>Details and status</p>
+        </div>
+        <div class="card-content">
+          <div class="patient-profile">
+            <div class="avatar">
+              <img src="https://via.placeholder.com/150" alt="Patient" id="patient-avatar">
+            </div>
+            <div>
+              <p class="patient-name">John Doe</p>
+              <p class="patient-id">ID: #12345</p>
+            </div>
+          </div>
+          
+          <div class="patient-details">
+            <div class="detail-row">
+              <p class="detail-label">Status:</p>
+              <span class="badge" id="patient-status-badge">Safe</span>
+            </div>
+            <div class="detail-row">
+              <p class="detail-label">Base Location:</p>
+              <p class="detail-value">123 Main St</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-label">Safe Radius:</p>
+              <p class="detail-value">500 meters</p>
+            </div>
+          </div>
+
+          <div class="emergency-contacts">
+            <p class="section-title">Emergency Contacts:</p>
+            <div class="contact">
+              <i class="fas fa-phone"></i>
+              <p>Jane Doe: (555) 123-4567</p>
+            </div>
+            <div class="contact">
+              <i class="fas fa-phone"></i>
+              <p>Dr. Smith: (555) 987-6543</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="button primary full-width" id="simulate-status">Simulate Status Change</button>
+          <button class="button secondary full-width">Edit Patient Details</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card activity-card">
+      <div class="card-header">
+        <h2>Activity History</h2>
+        <p>Recent movements and alerts</p>
+      </div>
+      <div class="card-content">
+        <div class="tabs">
+          <div class="tab-header">
+            <button class="tab-button active" data-tab="today">Today</button>
+            <button class="tab-button" data-tab="week">This Week</button>
+            <button class="tab-button" data-tab="month">This Month</button>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane active" id="today">
+              <div class="timeline">
+                <div class="timeline-item current">
+                  <p class="timeline-title">10:30 AM - Current Location</p>
+                  <p class="timeline-description">320 meters from base location</p>
+                </div>
+                <div class="timeline-item">
+                  <p class="timeline-title">9:45 AM - Park</p>
+                  <p class="timeline-description">450 meters from base location</p>
+                </div>
+                <div class="timeline-item">
+                  <p class="timeline-title">8:30 AM - Base Location</p>
+                  <p class="timeline-description">Patient at home</p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="week">
+              <p class="empty-message">Activity history for this week will be displayed here.</p>
+            </div>
+            <div class="tab-pane" id="month">
+              <p class="empty-message">Activity history for this month will be displayed here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Identity Dialog -->
+  <div class="modal" id="identity-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Patient Identification</h2>
+        <button class="close-button" id="close-identity-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>This information can help the patient identify themselves and contact their caretaker.</p>
+        <div class="identity-content">
+          <div class="avatar large">
+            <img src="https://via.placeholder.com/150" alt="Patient">
+          </div>
+          <div class="identity-details">
+            <h3>John Doe</h3>
+            <p>Patient ID: #12345</p>
+          </div>
+          <div class="identity-info">
+            <div class="detail-row">
+              <p class="detail-label">Caretaker:</p>
+              <p class="detail-value">Jane Smith</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-label">Relationship:</p>
+              <p class="detail-value">Family Member</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="button primary full-width">
+          <i class="fas fa-phone"></i>
+          Call Caretaker
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
+
